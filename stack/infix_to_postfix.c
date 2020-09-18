@@ -1,19 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "stack.h"
+
 #include <string.h>
 #include <stdbool.h>
 
-typedef struct STACK_S
-{
-	int size;
-	char *arr;
-	int top;
-} stack;
-
-void init(stack *s, int size);
-void push(stack *s, char x);
-void pop(stack *s);
-char top(stack *s);
 
 int precedence(char c)
 {
@@ -91,38 +80,4 @@ int main()
 	printf("%s\n", postfix);
 
 	return 0;
-}
-
-void init(stack *s, int size)
-{
-	s->size = size;
-	s->arr = malloc(sizeof(char) * size);
-	s->top = 0;
-}
-
-void push(stack *s, char x)
-{
-	if (s->top + 1 == s->size)
-		puts("Stack Overflow");
-	else
-	{
-		s->arr[s->top] = x;
-		++(s->top);
-	}
-}
-
-void pop(stack *s)
-{
-	if (s->top == 0)
-		puts("Stack Underflow");
-	else
-	{
-		s->arr[s->top - 1] = 0;
-		--(s->top);
-	}
-}
-
-char top(stack *s)
-{
-	return *(s->arr + s->top - 1);
 }
