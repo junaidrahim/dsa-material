@@ -5,8 +5,8 @@
 
 typedef struct NODE_C_S2
 {
-	NODE_C_S2 *next;
-	NODE_C_S2 *prev;
+	struct NODE_C_S2 *next;
+	struct NODE_C_S2 *prev;
 	int data;
 } node_double_c;
 

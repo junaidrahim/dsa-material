@@ -5,7 +5,7 @@
 
 typedef struct NODE_S
 {
-	NODE_S *next;
+	struct NODE_S *next;
 	int data;
 } node_single;
 
