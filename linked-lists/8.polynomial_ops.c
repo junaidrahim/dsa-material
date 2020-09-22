@@ -52,18 +52,35 @@ node *add_ploy(node *a, node *b) {
 	int index = 1;
 	node *sum = create_poly(0, 0);
 
-	while (curr_a != NULL) {
-		while (curr_b != NULL) {
-			if (curr_a->power == curr_b->power) {
-				insert_poly(sum, index, (curr_a->coeff) + (curr_b->coeff), curr_b->power);
-				index++;
-			}
-
+	while(curr_a->next && curr_b->next) {
+		if(curr_a->power > curr_b->power) {
+			insert_poly(sum, index, curr_a->coeff, curr_a->power);
+			index++;
+			curr_a = curr_a->next;
+		} else if (curr_a->power < curr_b->power) {
+			insert_poly(sum, index, curr_b->coeff, curr_b->power);
+			index++;
+			curr_b = curr_b->next;
+		} else { // powers are equal
+			insert_poly(sum, index, curr_a->coeff + curr_b->coeff, curr_a->power);
+			index++;
+			curr_a = curr_a->next;
 			curr_b = curr_b->next;
 		}
+	}
 
-		curr_a = curr_a->next;
-		curr_b = b;
+	while (curr_a->next || curr_b->next) {
+		if(curr_a->next){
+			insert_poly(sum, index, curr_a->coeff, curr_a->power);
+			index++;
+			curr_a = curr_a->next;
+		} 
+		
+		if (curr_b->next) {
+			insert_poly(sum, index, curr_b->coeff, curr_b->power);
+			index++;
+			curr_b = curr_b->next;
+		}		
 	}
 
 	return sum;
@@ -76,20 +93,38 @@ node *sub_ploy(node *a, node *b) {
 	int index = 1;
 	node *diff = create_poly(0, 0);
 
-	while (curr_a != NULL) {
-		while (curr_b != NULL) {
-			if (curr_a->power == curr_b->power) {
-				insert_poly(diff, index, (curr_a->coeff) - (curr_b->coeff), curr_b->power);
-				index++;
-			}
 
+	while(curr_a->next && curr_b->next) {
+		if(curr_a->power > curr_b->power) {
+			insert_poly(diff, index, curr_a->coeff, curr_a->power);
+			index++;
+			curr_a = curr_a->next;
+		} else if (curr_a->power < curr_b->power) {
+			insert_poly(diff, index, curr_b->coeff, curr_b->power);
+			index++;
+			curr_b = curr_b->next;
+		} else { // powers are equal
+			insert_poly(diff, index, curr_a->coeff + curr_b->coeff, curr_a->power);
+			index++;
+			curr_a = curr_a->next;
 			curr_b = curr_b->next;
 		}
-
-		curr_a = curr_a->next;
-		curr_b = b;
 	}
 
+	while (curr_a->next || curr_b->next) {
+		if(curr_a->next){
+			insert_poly(diff, index, curr_a->coeff, curr_a->power);
+			index++;
+			curr_a = curr_a->next;
+		} 
+		
+		if (curr_b->next) {
+			insert_poly(diff, index, curr_b->coeff, curr_b->power);
+			index++;
+			curr_b = curr_b->next;
+		}		
+	}
+	
 	return diff;
 }
 
@@ -133,7 +168,7 @@ int main() {
 	insert_poly(a, 2, 13, 1);
 	insert_poly(a, 3, 6, 0);
 
-	node *b = create_poly(16, 3);
+	node *b = create_poly(16, 4);
 
 	insert_poly(b, 1, 15, 2);
 	insert_poly(b, 2, 33, 1);
