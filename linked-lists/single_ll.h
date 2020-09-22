@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct NODE_S
-{
+typedef struct NODE_S {
 	struct NODE_S *next;
 	int data;
 } node_single;
@@ -14,8 +13,7 @@ void print_singly_linked_list(node_single *head);
 void insert_singly_linked_list(node_single *head, int data, int index);
 void delete_singly_linked_list(node_single **head, int index);
 
-node_single *create_singly_linked_list(int d)
-{
+node_single *create_singly_linked_list(int d) {
 	node_single *head = (node_single *)malloc(sizeof(node_single));
 
 	head->data = d;
@@ -24,12 +22,10 @@ node_single *create_singly_linked_list(int d)
 	return head;
 }
 
-void print_singly_linked_list(node_single *head)
-{
+void print_singly_linked_list(node_single *head) {
 	node_single *curr = head;
 
-	while (curr != NULL)
-	{
+	while (curr != NULL) {
 		printf("%d->", curr->data);
 		curr = curr->next;
 	}
@@ -37,13 +33,11 @@ void print_singly_linked_list(node_single *head)
 	puts("NULL");
 }
 
-void insert_singly_linked_list(node_single *head, int data, int index)
-{
+void insert_singly_linked_list(node_single *head, int data, int index) {
 	int i = 0;
 	node_single *curr = head;
 
-	while (i != index - 1)
-	{
+	while (i != index - 1) {
 		curr = curr->next;
 		i++;
 	}
@@ -55,19 +49,16 @@ void insert_singly_linked_list(node_single *head, int data, int index)
 	curr->next = n;
 }
 
-void delete_singly_linked_list(node_single **head, int index)
-{
+void delete_singly_linked_list(node_single **head, int index) {
 	node_single *curr = *head;
 	int i = 0;
 
-	if (index == 0)
-	{
+	if (index == 0) {
 		*head = (*head)->next;
 		return;
 	}
 
-	while (i != index - 1)
-	{
+	while (i != index - 1) {
 		curr = curr->next;
 		i++;
 	}

@@ -3,13 +3,13 @@
 
 #include "single_ll.h"
 
-void arrange_odd_even (node_single **head) {
+void arrange_odd_even(node_single **head) {
 	node_single *last = *head;
-	
-	while(last->next != NULL)
+
+	while (last->next != NULL)
 		last = last->next;
 
-	if((*head)->data%2 == 0){	
+	if ((*head)->data % 2 == 0) {
 		last->next = *head;
 		(*head) = (*head)->next;
 		last = last->next;
@@ -17,9 +17,9 @@ void arrange_odd_even (node_single **head) {
 	}
 
 	node_single *curr = *head;
-	
-	while(curr->next != NULL){
-		if(curr->next->data % 2 == 0){
+
+	while (curr->next != NULL) {
+		if (curr->next->data % 2 == 0) {
 			// move the node to the end
 			last->next = curr->next;
 			curr->next = curr->next->next;
@@ -31,10 +31,10 @@ void arrange_odd_even (node_single **head) {
 	}
 }
 
-int main(){
+int main() {
 	node_single *a = create_singly_linked_list(0);
 
-	for(int i=1; i<10; i++)
+	for (int i = 1; i < 10; i++)
 		insert_singly_linked_list(a, i, i);
 
 	print_singly_linked_list(a);
