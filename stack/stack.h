@@ -22,7 +22,7 @@ void init(stack *s, int size) {
 }
 
 void push(stack *s, int x) {
-	if (s->top + 1 == s->size) puts("Stack Overflow");
+	if (s->top == s->size) puts("Stack Overflow");
 	else {
 		s->arr[s->top] = x;
 		++(s->top);
