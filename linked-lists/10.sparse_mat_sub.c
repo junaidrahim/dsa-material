@@ -82,9 +82,9 @@ int main() {
 	puts("\n");
 	print_sparse_matrix(j, 5, 5);
 
-	puts("\nSum is: ");
-	node_sparse_matrix *sum = subtract(h, j, 5, 5);
-	print_sparse_matrix(sum, 5, 5);
+	puts("\nDifference is: ");
+	node_sparse_matrix *diff = subtract(h, j, 5, 5);
+	print_sparse_matrix(diff, 5, 5);
 
 	return 0;
 }
